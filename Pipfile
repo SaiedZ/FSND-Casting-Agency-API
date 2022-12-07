@@ -9,6 +9,9 @@ flask-cors = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
 flask-migrate = "*"
+authlib = "*"
+pyjwt = "*"
+python-jose = "*"
 
 [dev-packages]
 flake8 = "*"
