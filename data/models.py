@@ -11,6 +11,7 @@ from utils.movie_genre import MovieGenreEnum
 
 
 class GenderEnum(enum.Enum):
+    """Utility class to Actor, used for gender attribute"""
 
     M = "Male"
     F = "Female"
@@ -77,12 +78,20 @@ class Movie(db.Model, ModelCrudDbHelper):
 
     @validates('title')
     def validates_title(self, key, title):
+        """Validates the title attribute
+
+        Should contain at least 5 characters
+        """
         if len(title) < 5:
             raise TypeError('Title must contain at least 5 characters')
         return title
 
     @validates('release_date')
     def validates_release_date(self, key, release_date):
+        """Validates the release_date attribute.
+
+        Should be in the format DD-MM-YYYY.
+        """
         try:
             datetime.strptime(release_date, '%d-%m-%Y')
         except ValueError as e:
@@ -93,6 +102,10 @@ class Movie(db.Model, ModelCrudDbHelper):
 
     @validates('genre')
     def validates_genre(self, key, genre):
+        """validates the genre attribute.
+
+        See MovieGenreEnum class.
+        """
         if hasattr(MovieGenreEnum, genre):
             return genre
         raise TypeError(
@@ -112,6 +125,9 @@ class Movie(db.Model, ModelCrudDbHelper):
         }
 
     def short_format(self):
+        """
+        Short format used for serialization of moviesin actor's format method
+        """
         return {
             'id': self.id,
             'title': self.title,
@@ -138,6 +154,10 @@ class Actor(db.Model, ModelCrudDbHelper):
 
     @validates('name')
     def validate_name(self, key, name):
+        """Validates the name attribute.
+
+        Should contain only alphabetic characters and at least 3 characters.
+        """
         if not name.isalpha():
             raise TypeError('Name must containonly alphabetic characters')
         if len(name) < 3:
@@ -154,6 +174,10 @@ class Actor(db.Model, ModelCrudDbHelper):
 
     @validates('gender')
     def validate_gender(self, key, gender):
+        """Validates the gender attribute.
+
+        See GEnderEnum class.
+        """
         if hasattr(GenderEnum, gender):
             return gender
         raise TypeError('Gender must be "M" or "F"')
@@ -169,6 +193,9 @@ class Actor(db.Model, ModelCrudDbHelper):
         }
 
     def short_format(self):
+        """
+        Short description of the actor used in movie's format method.
+        """
         return {
             'id': self.id,
             'name': self.name,

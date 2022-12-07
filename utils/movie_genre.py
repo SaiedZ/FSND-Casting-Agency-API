@@ -7,6 +7,7 @@ import enum
 
 
 class MovieGenreEnum(enum.Enum):
+    """Utility class to Movie, used for genre attribute"""
 
     Action = "Action"
     Adventure = "Adventure"
