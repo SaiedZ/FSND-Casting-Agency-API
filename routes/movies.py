@@ -84,7 +84,7 @@ def create_movie():
         movie_dict['description'] = data['description']
     if 'actors' in data:
         actors = _get_actors_from_list_of_actors_id(data['actors'])
-        movie_dict['actors'].extend(actors)
+        movie_dict['actors'] = actors
 
     @handle_db_crud_errors
     def create_movie_helper():
@@ -137,7 +137,6 @@ def update_movie(id):
         movie.description = data.get('description') or movie.description
         if 'actors' in data:
             actors = _get_actors_from_list_of_actors_id(data['actors'])
-            print(actors)
             movie.actors = actors
 
         movie.update()
