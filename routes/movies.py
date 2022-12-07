@@ -149,7 +149,7 @@ def update_movie(id):
     return jsonify({"success": True, "movie": movie.format()}), 200
 
 
-@movies_blueprint.route('/movies/<int:movie_id>', methods=['DELETE'])
+@movies_blueprint.route('/movies/<int:id>', methods=['DELETE'])
 def delete_movie(id):
     """Deletes a movie.
 
