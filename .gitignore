@@ -172,3 +172,4 @@ poetry.toml
 setup.sh
 .vscode/settings.json
 data/dev_db.sqlite3
+urls_users.txt
