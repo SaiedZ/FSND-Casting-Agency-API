@@ -17,6 +17,9 @@ from utils import error_handlers_blueprint
 from routes import actors_blueprint, movies_blueprint
 
 
+API_VERSION = "v1"
+
+
 def create_app(test_config=False):
     """Creates and configure the app
 
@@ -43,9 +46,9 @@ def create_app(test_config=False):
     CORS(app)
 
     # Register blueprints
-    app.register_blueprint(error_handlers_blueprint)
-    app.register_blueprint(actors_blueprint)
-    app.register_blueprint(movies_blueprint)
+    app.register_blueprint(error_handlers_blueprint, url_prefix=f"/api/{API_VERSION}")
+    app.register_blueprint(actors_blueprint, url_prefix=f"/api/{API_VERSION}")
+    app.register_blueprint(movies_blueprint, url_prefix=f"/api/{API_VERSION}")
 
     # Setting up the database
     db = db_setup(app)
