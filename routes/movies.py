@@ -1,11 +1,10 @@
 """
 This module contains the routes for the movies resource.
 """
-from datetime import datetime
 
 from flask import Blueprint, jsonify, abort, request
 
-from data.models import Movie
+from data.models import Movie, Actor
 from utils import Paginator, handle_db_crud_errors
 
 movies_blueprint = Blueprint('movies_blueprint', __name__)
@@ -50,7 +49,7 @@ def get_movies():
 
 
 @movies_blueprint.route('/movies', methods=['POST'])
-def create_movies():
+def create_movie():
     """Creates a new movie.
 
     Returns
@@ -83,6 +82,9 @@ def create_movies():
         movie_dict['genre'] = data['genre']
     if 'description' in data:
         movie_dict['description'] = data['description']
+    if 'actors' in data:
+        actors = _get_actors_from_list_of_actors_id(data['actors'])
+        movie_dict['actors'].extend(actors)
 
     @handle_db_crud_errors
     def create_movie_helper():
@@ -95,7 +97,7 @@ def create_movies():
     return jsonify({"success": True, "movie": movie.format()}), 201
 
 
-@movies_blueprint.route('/movies/<int:movie_id>', methods=['PATCH'])
+@movies_blueprint.route('/movies/<int:id>', methods=['PATCH'])
 def update_movie(id):
     """Updates a movie.
 
@@ -128,18 +130,15 @@ def update_movie(id):
 
     @handle_db_crud_errors
     def update_movie_helper():
-        movie.title = data['title'] or movie.title
-        if "release_date" in data:
-            release_date = data['release_date']
-            try:
-                release_date = datetime.strptime(release_date, '%d-%m-%Y')
-            except ValueError as e:
-                raise ValueError(
-                    "Incorrect data format, should be DD-MM-YYYY"
-                ) from e
-            movie.release_date = release_date
-        movie.genre = data['genre'] or movie.genre
-        movie.description = data['description'] or movie.description
+
+        movie.title = data.get('title') or movie.title
+        movie.release_date = data.get('release_date') or movie.release_date
+        movie.genre = data.get('genre') or movie.genre
+        movie.description = data.get('description') or movie.description
+        if 'actors' in data:
+            actors = _get_actors_from_list_of_actors_id(data['actors'])
+            print(actors)
+            movie.actors = actors
 
         movie.update()
 
@@ -181,3 +180,37 @@ def delete_movie(id):
     delete_movie_helper()
 
     return jsonify({"success": True, "delete": id}), 200
+
+
+def _get_actors_from_list_of_actors_id(actors_id: list[int]) -> list[Actor]:
+    """Gets a list of actors from a list of actors ids.
+
+    Parameters
+    -------
+    actors_id: list of int
+        list of actors ids.
+
+    Returns
+    -------
+    list of Actor:
+        list of actors fetched from the database.
+
+    Raises
+    -------
+    400: 'actors must be a list of actor ids'
+    400: 'Invalid actor id, should be int'
+    """
+    actors = []
+
+    if not isinstance(actors_id, list):
+        abort(400, 'actors must be a list of actor ids')
+    try:
+        actors_id = {int(actor_id) for actor_id in actors_id}
+    except ValueError:
+        abort(400, 'Invalid actor id, should be int')
+
+    for actor_id in actors_id:
+        actor = Actor.query.get_or_404(actor_id)
+        actors.append(actor)
+
+    return actors
