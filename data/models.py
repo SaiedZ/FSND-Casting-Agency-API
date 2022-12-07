@@ -86,14 +86,18 @@ class Movie(db.Model, ModelCrudDbHelper):
         try:
             datetime.strptime(release_date, '%d-%m-%Y')
         except ValueError as e:
-            raise ValueError("Incorrect data format, should be DD-MM-YYYY") from e
+            raise ValueError(
+                "Incorrect data format, should be DD-MM-YYYY"
+            ) from e
         return datetime.strptime(release_date, '%d-%m-%Y')
 
     @validates('genre')
     def validates(self, key, genre):
         if genre not in MovieGenreEnum:
-            raise TypeError('Genre must be one of the following: '
-                            f'{", ".join([genre.value for genre in MovieGenreEnum])}')
+            raise TypeError(
+                'Genre must be one of the following: '
+                f'{", ".join([genre.value for genre in MovieGenreEnum])}'
+            )
         return genre
 
     def format(self):
