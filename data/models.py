@@ -92,13 +92,13 @@ class Movie(db.Model, ModelCrudDbHelper):
         return datetime.strptime(release_date, '%d-%m-%Y')
 
     @validates('genre')
-    def validates(self, key, genre):
-        if genre not in MovieGenreEnum:
-            raise TypeError(
-                'Genre must be one of the following: '
-                f'{", ".join([genre.value for genre in MovieGenreEnum])}'
-            )
-        return genre
+    def validates_genre(self, key, genre):
+        if hasattr(MovieGenreEnum, genre):
+            return genre
+        raise TypeError(
+            'Genre must be one of the following: '
+            f'{", ".join([genre.value for genre in MovieGenreEnum])}'
+        )
 
     def format(self):
         return {
