@@ -2,63 +2,12 @@
 This module contains the routes for the actors resource.
 """
 
-from functools import wraps
-
 from flask import Blueprint, jsonify, abort, request
-from sqlalchemy import exc
 
 from data.models import Actor
-from utils.paginator import Paginator
+from utils import Paginator, handle_db_crud_errors
 
 actors_blueprint = Blueprint('actors_blueprint', __name__)
-
-
-def handle_db_crud_errors(func):
-    """Decorator to handle errors when creating, updating or deleting
-
-    Parameters
-    -------
-    func: function
-        the function to be decorated
-
-    Returns
-    -------
-    result:
-        the result returned by the decorated function: func
-
-    Raises
-    -------
-    400: TypeError
-        if model's attributes sent by the user doesn't match the expected types
-    400: IntegrityError
-        if the action could not be performed due to a database integrity error
-    500: server error
-        the error's message is returned in the response body
-    """
-
-    @wraps(func)
-    def wrapped_func(*args, **kwargs):
-
-        try:
-            result = func()
-
-        except TypeError as e:
-            print(e)
-            abort(400, f"ERROR: {e}")
-
-        except exc.IntegrityError as e:
-            err_msg = str(e.orig).split(':')[-1].replace('\n', '').strip()
-            print(e)
-            abort(400, f"ERROR: {err_msg}")
-
-        except Exception as e:
-            err_msg = str(e.orig).split(':')[-1].replace('\n', '').strip()
-            print(e)
-            abort(500, f"ERROR: {err_msg}")
-
-        return result
-
-    return wrapped_func
 
 
 @actors_blueprint.route('/actors', methods=['GET'])
@@ -71,14 +20,14 @@ def get_actors():
         sucess: bool
             will be True if the request was successfully handled.
         actors: list of json objects
-            short description of actors.
+            description of actors.
     Response code: int
         200.
 
     Raises
     -------
     500: server error
-        if fetching actors failed.
+        if fetching actors from db fails.
     """
     try:
         actors = Actor.query.all()
@@ -123,7 +72,7 @@ def create_actor():
 
     try:
         name, age, gender = data['name'], data['age'], data['gender']
-    except ValueError:
+    except KeyError:
         abort(400, 'Actor\'s data must contain name and age and gender')
 
     @handle_db_crud_errors
@@ -138,7 +87,7 @@ def create_actor():
 
     actor = create_actor_helper()
 
-    return jsonify({"success": True, "actor": [actor.format()]}), 201
+    return jsonify({"success": True, "actor": actor.format()}), 201
 
 
 @actors_blueprint.route('/actors/<int:id>', methods=['PATCH'])
@@ -165,7 +114,6 @@ def update_actor(id):
     See the decorator handle_db_crud_errors for more information about the
     errors that can be raised.
     """
-
     actor = Actor.query.get_or_404(id)
 
     data = request.get_json()
@@ -183,7 +131,7 @@ def update_actor(id):
 
     actor = update_actor_helper()
 
-    return jsonify({"success": True, "actor": [actor.format()]})
+    return jsonify({"success": True, "actor": actor.format()}), 200
 
 
 @actors_blueprint.route('/actors/<int:id>', methods=['DELETE'])
