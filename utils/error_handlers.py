@@ -1,4 +1,6 @@
-"""Module to """
+"""
+Module to handel errors. Errors are customised to return a JSON response.
+"""
 
 from flask import jsonify, Blueprint
 
@@ -28,6 +30,19 @@ def unauthorized(error):
                 "message": message}
         ),
         401
+    )
+
+
+@error_handlers_blueprint.app_errorhandler(403)
+def forbidden(error):
+    message = error.description or "Forbidden"
+    return (
+        jsonify(
+            {"success": False,
+                "error": 403,
+                "message": message}
+        ),
+        403
     )
 
 
