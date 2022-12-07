@@ -6,11 +6,13 @@ from flask import Blueprint, jsonify, abort, request
 
 from data.models import Actor
 from utils import Paginator, handle_db_crud_errors
+from auth.auth import requires_auth
 
 actors_blueprint = Blueprint('actors_blueprint', __name__)
 
 
 @actors_blueprint.route('/actors', methods=['GET'])
+@requires_auth("get:actors")
 def get_actors():
     """Gets all actors
 
@@ -49,6 +51,7 @@ def get_actors():
 
 
 @actors_blueprint.route('/actors', methods=['POST'])
+@requires_auth('create:actor')
 def create_actor():
     """Creates a new actor.
 
@@ -91,6 +94,7 @@ def create_actor():
 
 
 @actors_blueprint.route('/actors/<int:id>', methods=['PATCH'])
+@requires_auth('patch:actor')
 def update_actor(id):
     """Updates an existing actor.
 
@@ -135,6 +139,7 @@ def update_actor(id):
 
 
 @actors_blueprint.route('/actors/<int:id>', methods=['DELETE'])
+@requires_auth('delete:actor')
 def delete_actor(id):
     """Deletes an existing actor.
 

@@ -6,11 +6,13 @@ from flask import Blueprint, jsonify, abort, request
 
 from data.models import Movie, Actor
 from utils import Paginator, handle_db_crud_errors
+from auth.auth import requires_auth
 
 movies_blueprint = Blueprint('movies_blueprint', __name__)
 
 
 @movies_blueprint.route('/movies', methods=['GET'])
+@requires_auth('get:movie')
 def get_movies():
     """Gets all movies
 
@@ -49,6 +51,7 @@ def get_movies():
 
 
 @movies_blueprint.route('/movies', methods=['POST'])
+@requires_auth('create:movie')
 def create_movie():
     """Creates a new movie.
 
@@ -98,6 +101,7 @@ def create_movie():
 
 
 @movies_blueprint.route('/movies/<int:id>', methods=['PATCH'])
+@requires_auth('patch:movie')
 def update_movie(id):
     """Updates a movie.
 
@@ -149,6 +153,7 @@ def update_movie(id):
 
 
 @movies_blueprint.route('/movies/<int:id>', methods=['DELETE'])
+@requires_auth('delete:movie')
 def delete_movie(id):
     """Deletes a movie.
 
