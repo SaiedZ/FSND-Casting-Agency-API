@@ -2,10 +2,12 @@
 """
 
 import enum
+from datetime import datetime
 
 from sqlalchemy.orm import validates
 
 from .db import db
+from utils.movie_genre import MovieGenreEnum
 
 
 class GenderEnum(enum.Enum):
@@ -58,6 +60,7 @@ class Movie(db.Model, ModelCrudDbHelper):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, unique=True, nullable=False)
     release_date = db.Column(db.Date, nullable=False)
+    genre = db.Column(db.Enum(MovieGenreEnum), nullable=True)
     description = db.Column(db.String)
 
     actors = db.relationship(
@@ -71,6 +74,47 @@ class Movie(db.Model, ModelCrudDbHelper):
 
     def __str__(self):
         return self.title
+
+    @validates('title')
+    def validates_title(self, key, title):
+        if len(title) < 5:
+            raise TypeError('Title must contain at least 5 characters')
+        return title
+
+    @validates('release_date')
+    def validates_release_date(self, key, release_date):
+        try:
+            datetime.strptime(release_date, '%d-%m-%Y')
+        except ValueError as e:
+            raise ValueError("Incorrect data format, should be DD-MM-YYYY") from e
+        return datetime.strptime(release_date, '%d-%m-%Y')
+
+    @validates('genre')
+    def validates(self, key, genre):
+        if genre not in MovieGenreEnum:
+            raise TypeError('Genre must be one of the following: '
+                            f'{", ".join([genre.value for genre in MovieGenreEnum])}')
+        return genre
+
+    def format(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'release_date': self.release_date,
+            'genre': self.genre.value,
+            'description': self.description,
+            'actors': [actor.short_format() for actor in self.actors],
+            'num_actors': len(self.actors),
+        }
+
+    def short_format(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'release_date': self.release_date,
+            'genre': self.genre.value,
+            'description': self.description,
+        }
 
 
 class Actor(db.Model, ModelCrudDbHelper):
@@ -110,30 +154,20 @@ class Actor(db.Model, ModelCrudDbHelper):
             return gender
         raise TypeError('Gender must be "M" or "F"')
 
-    def short(self):
+    def format(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'age': self.age,
+            'gender': self.gender.value,
+            'movies': [movie.short_format() for movie in self.movies],
+            'number_movies': len(self.movies),
+        }
+
+    def short_format(self):
         return {
             'id': self.id,
             'name': self.name,
             'age': self.age,
             'gender': self.gender.value,
         }
-
-    def long(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'age': self.age,
-            'gender': self.gender.value,
-            'movies': self.movies
-        }
-
-# class Genre(db.Model):
-
-#     __tablename__ = 'genre'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String, unique=True, nullable=False)
-
-#     movies = db.relationship(
-    # 'Movie', secondary='movie_genre', backref='genres'
-    # )
