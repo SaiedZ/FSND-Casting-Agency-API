@@ -12,6 +12,8 @@ flask-migrate = "*"
 authlib = "*"
 pyjwt = "*"
 python-jose = "*"
+six = "*"
+requests = "*"
 
 [dev-packages]
 flake8 = "*"
