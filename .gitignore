@@ -169,7 +169,6 @@ poetry.toml
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python
-setup.sh
 .vscode/settings.json
 data/dev_db.sqlite3
 urls_users.txt
