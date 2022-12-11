@@ -3,7 +3,7 @@ Test suite for the actors.
 """
 
 import json
-import app
+import flaskr as flaskr
 
 from data.models import Actor
 
@@ -13,7 +13,7 @@ class TestActors:
 
     @classmethod
     def setup_class(cls):
-        cls.app = app.create_app(test_config=True)
+        cls.app = flaskr.create_app(test_config=True)
         cls.app_context = cls.app.test_request_context()
         cls.app_context.push()
 
@@ -23,7 +23,7 @@ class TestActors:
 
     def setup_method(self, method):
 
-        self.base_url = f"/api/{app.API_VERSION}"
+        self.base_url = f"/api/{flaskr.API_VERSION}"
 
         self.actor = Actor(name="james", age=20, gender="M")
         self.actor.insert()
@@ -114,9 +114,9 @@ class TestActors:
 
     def test_post_actor_with_permission_return_success(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
         mocker.patch(
-            "auth.auth.verify_decode_jwt",
+            "flaskr.auth.auth.verify_decode_jwt",
             return_value={"permissions": ["create:actor"]},
         )
 
@@ -131,9 +131,9 @@ class TestActors:
 
     def test_update_actor_with_permission_success(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
         mocker.patch(
-            "auth.auth.verify_decode_jwt",
+            "flaskr.auth.auth.verify_decode_jwt",
             return_value={"permissions": ["patch:actor"]}
         )
 
@@ -151,9 +151,9 @@ class TestActors:
 
     def test_delete_actor_with_permission_success(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
         mocker.patch(
-            "auth.auth.verify_decode_jwt",
+            "flaskr.auth.auth.verify_decode_jwt",
             return_value={"permissions": ["delete:actor"]},
         )
 

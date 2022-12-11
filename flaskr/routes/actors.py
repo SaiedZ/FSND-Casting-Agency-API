@@ -4,9 +4,9 @@ This module contains the routes for the actors resource.
 
 from flask import Blueprint, jsonify, abort, request
 
-from data.models import Actor
-from utils import Paginator, handle_db_crud_errors
-from auth.auth import requires_auth
+from ..data.models import Actor
+from ..utils import Paginator, handle_db_crud_errors
+from ..auth.auth import requires_auth
 
 actors_blueprint = Blueprint('actors_blueprint', __name__)
 
@@ -131,6 +131,7 @@ def update_actor(id):
         actor.age = data.get('age') or actor.age
         actor.gender = data.get('gender') or actor.gender
         actor.update()
+        print("actor updated")
         return actor
 
     actor = update_actor_helper()

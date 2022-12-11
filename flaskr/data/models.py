@@ -2,12 +2,12 @@
 """
 
 import enum
-from datetime import datetime
+from datetime import datetime, date
 
 from sqlalchemy.orm import validates
 
 from .db import db
-from utils.movie_genre import MovieGenreEnum
+from ..utils.movie_genre import MovieGenreEnum
 
 
 class GenderEnum(enum.Enum):
@@ -92,6 +92,8 @@ class Movie(db.Model, ModelCrudDbHelper):
 
         Should be in the format DD-MM-YYYY.
         """
+        if isinstance(release_date, date):
+            return release_date
         try:
             datetime.strptime(release_date, '%d-%m-%Y')
         except ValueError as e:
@@ -106,6 +108,8 @@ class Movie(db.Model, ModelCrudDbHelper):
 
         See MovieGenreEnum class.
         """
+        if isinstance(genre, MovieGenreEnum):
+            return genre
         if hasattr(MovieGenreEnum, genre):
             return genre
         raise TypeError(
@@ -178,6 +182,8 @@ class Actor(db.Model, ModelCrudDbHelper):
 
         See GEnderEnum class.
         """
+        if isinstance(gender, GenderEnum):
+            return gender
         if hasattr(GenderEnum, gender):
             return gender
         raise TypeError('Gender must be "M" or "F"')

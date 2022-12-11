@@ -9,14 +9,14 @@ import os
 from flask import Flask
 from flask_cors import CORS
 
-from config import ProductionConfig, DevelopmentConfig, TestingConfig
+from .config import ProductionConfig, DevelopmentConfig, TestingConfig
 
-from data.models import Movie, Actor  # noqa
-from data.db import db_setup
+from .data.models import Movie, Actor  # noqa
+from .data.db import db_setup
 
-from utils import error_handlers_blueprint
-from routes import actors_blueprint, movies_blueprint
-from routes import oauth_blueprint, oauth
+from .utils import error_handlers_blueprint
+from .routes import actors_blueprint, movies_blueprint
+from .routes import oauth_blueprint, oauth
 
 
 API_VERSION = "v1"

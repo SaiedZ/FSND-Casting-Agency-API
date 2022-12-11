@@ -3,9 +3,9 @@ This module contains the tests for the movies endpoints.
 """
 
 import json
-import app
+import flaskr as flaskr
 
-from data.models import Movie, Actor
+from flaskr.data.models import Movie, Actor
 
 
 class TestActors:
@@ -13,7 +13,7 @@ class TestActors:
 
     @classmethod
     def setup_class(cls):
-        cls.app = app.create_app(test_config=True)
+        cls.app = flaskr.create_app(test_config=True)
         cls.app_context = cls.app.test_request_context()
         cls.app_context.push()
 
@@ -22,7 +22,7 @@ class TestActors:
         cls.app_context.pop()
 
     def setup_method(self, method):
-        self.base_url = f"/api/{app.API_VERSION}"
+        self.base_url = f"/api/{flaskr.API_VERSION}"
 
         self.actor = Actor(name="james", age=20, gender="M")
         self.actor.insert()
@@ -73,8 +73,8 @@ class TestActors:
         assert response.status_code == 401
 
     def test_get_movies_with_permission_success(self, client, mocker):
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": ["get:movie"]})
 
         response = client.get(self.movie_url)
@@ -82,8 +82,8 @@ class TestActors:
 
     def test_create_movie_with_permission_success(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": ["create:movie"]})
 
         data = {"title": "Die Hard 5", "description": "Action Movie",
@@ -98,8 +98,8 @@ class TestActors:
         assert response.json["movie"]["title"] == data["title"]
 
     def test_update_movie_with_permission_success(self, client, mocker):
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": ["patch:movie"]})
 
         data = {"title": "Die Hard 6", "description": "Action Movie",
@@ -114,8 +114,8 @@ class TestActors:
         assert response.json["movie"]["title"] == data["title"]
 
     def test_update_movie_actor_with_permission_success(self, client, mocker):
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": ["patch:movie"]})
 
         data = {"actors": [f"{self.actor_id}"]}
@@ -129,8 +129,8 @@ class TestActors:
         assert response.json["movie"]["actors"][0]["id"] == self.actor_id
 
     def test_delete_movie_with_permission_success(self, client, mocker):
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": ["delete:movie"]})
 
         response = client.delete(self.movie_detail_url)

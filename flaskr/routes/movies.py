@@ -4,9 +4,9 @@ This module contains the routes for the movies resource.
 
 from flask import Blueprint, jsonify, abort, request
 
-from data.models import Movie, Actor
-from utils import Paginator, handle_db_crud_errors
-from auth.auth import requires_auth
+from ..data.models import Movie, Actor
+from ..utils import Paginator, handle_db_crud_errors
+from ..auth.auth import requires_auth
 
 movies_blueprint = Blueprint('movies_blueprint', __name__)
 

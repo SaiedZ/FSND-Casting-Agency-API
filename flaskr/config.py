@@ -26,4 +26,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    SQLALCHEMY_DATABASE_URI = (
+        f"sqlite:///{os.path.join(Config.BASEDIR, 'data', 'test_db.sqlite3')}"
+    )

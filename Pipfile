@@ -14,10 +14,14 @@ pyjwt = "*"
 python-jose = "*"
 six = "*"
 requests = "*"
+pytest-flask = "*"
+pytest = "*"
+coverage = "*"
 
 [dev-packages]
 flake8 = "*"
 black = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.10"
