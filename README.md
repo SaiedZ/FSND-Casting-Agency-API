@@ -205,51 +205,51 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
+```json
+  {
+  "actors": [
       {
-      "actors": [
-          {
-              "age": 35,
-              "gender": "Female",
-              "id": 1,
-              "movies": [
-                  {
-                      "description": null,
-                      "genre": "Action",
-                      "id": 2,
-                      "release_date": "Tue, 01 Jan 2002 00:00:00 GMT",
-                      "title": "Die Hard 2"
-                  }
-              ],
-              "name": "Jannet",
-              "number_movies": 1
-          },
-          {
-              "age": 3,
-              "gender": "Male",
-              "id": 2,
-              "movies": [],
-              "name": "Jammy",
-              "number_movies": 0
-          },
-          {
-              "age": 3,
-              "gender": "Male",
-              "id": 3,
-              "movies": [],
-              "name": "Jammy",
-              "number_movies": 0
-          }
-      ],
-      "next_page": 2,
-      "next_page_url": "http://127.0.0.1:5000/api/v1/actors?page=2",
-      "page": 1,
-      "pages": 5,
-      "success": true,
-      "total_actors": 15
-    }
-    
-    ```
+          "age": 35,
+          "gender": "Female",
+          "id": 1,
+          "movies": [
+              {
+                  "description": null,
+                  "genre": "Action",
+                  "id": 2,
+                  "release_date": "Tue, 01 Jan 2002 00:00:00 GMT",
+                  "title": "Die Hard 2"
+              }
+          ],
+          "name": "Jannet",
+          "number_movies": 1
+      },
+      {
+          "age": 3,
+          "gender": "Male",
+          "id": 2,
+          "movies": [],
+          "name": "Jammy",
+          "number_movies": 0
+      },
+      {
+          "age": 3,
+          "gender": "Male",
+          "id": 3,
+          "movies": [],
+          "name": "Jammy",
+          "number_movies": 0
+      }
+  ],
+  "next_page": 2,
+  "next_page_url": "http://127.0.0.1:5000/api/v1/actors?page=2",
+  "page": 1,
+  "pages": 5,
+  "success": true,
+  "total_actors": 15
+}
+
+```
   
 #### POST ` /actors`
 
