@@ -193,6 +193,8 @@ def delete_movie(id):
     JSON:
         success: bool
             will be True if the request was successfully handled.
+        delete: int
+            id of the deleted movie.
     Response code: int
         200.
 
