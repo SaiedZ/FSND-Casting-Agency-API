@@ -17,6 +17,7 @@ from .data.db import db_setup
 from .utils import error_handlers_blueprint
 from .routes import actors_blueprint, movies_blueprint
 from .routes import oauth_blueprint, oauth
+from .routes import health_blueprint
 
 
 API_VERSION = "v1"
@@ -58,6 +59,9 @@ def create_app(test_config=False):
         movies_blueprint, url_prefix=f"/api/{API_VERSION}")
 
     app.register_blueprint(oauth_blueprint)
+
+    app.register_blueprint(
+        health_blueprint, url_prefix=f"/api/{API_VERSION}")
 
     # Setting up the database
     db = db_setup(app)
