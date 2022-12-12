@@ -152,3 +152,225 @@ The API will return three error types when requests fail:
 - 422: Not Processable
 - 500: Internal Server Error
 
+### 🧝‍♂️ Actors endpoints
+
+#### GET ` /actors `
+
+    Gets all actors
+
+    Permissions
+    -------
+    get:actors
+
+    Returns
+    -------
+    JSON:
+        sucess: bool
+            will be True if the request was successfully handled.
+        actors: list of json objects
+            description of actors.
+        page: int
+            the current page number.
+        pages: int
+            the total number of pages.
+        next_page: int or False
+            the next page number or False if there is no next page.
+        next_page_url: str or False
+            the url for the next page or False if there is no next page.
+        total_actors: int
+            the total number of actors.
+    Response code: int
+        200.
+
+    Raises
+    -------
+    500: server error
+        if fetching actors from db fails.
+
+#### POST ` /actors/$id`
+
+    Creates a new actor.
+
+    Permissions
+    -------
+    create:actor
+
+    Returns
+    -------
+    JSON:
+        success: bool
+            will be True if the request was successfully handled.
+        actor: JSON
+            a formatted representation of the created actor.
+    Response code: int
+        201
+
+    Notes
+    -------
+    See errors section for more information about the errors that can be raised.
+
+#### PATCH ` /actors/$id`
+
+    Updates an existing actor.
+
+    Permissions
+    -------
+    patch:actor
+
+    Parameters
+    -------
+    id: int
+        the id of the actor to be updated.
+
+    Returns
+    -------
+    JSON:
+        success: bool
+            will be True if the request was successfully handled.
+        actor: JSON
+            a formatted representation of the updated actor.
+    Response code: int
+        200
+
+    Notes
+    -------
+    See errors section for more information about the errors that can be raised.
+    
+#### DELETE ` /actors/$id`
+
+   Deletes an existing actor.
+
+    Permissions
+    -------
+    delete:actor
+
+    Parameters
+    -------
+    id: int
+        the id of the actor to be deleted.
+
+    Returns
+    -------
+    JSON:
+        success: bool
+            will be True if the request was successfully handled.
+        detele: int
+            the id of the deleted actor.
+    Response code: int
+        200
+    
+    Raises
+    -------
+    500: server error
+        if deleting actor from db fails.
+        
+
+### 🎬 Movies endpoints
+
+#### GET ` /movies `
+
+    Gets all movies
+
+    Permissions
+    -------
+    get:movies
+
+    Returns
+    -------
+    JSON:
+        sucess: bool
+            will be True if the request was successfully handled.
+        movies: list of json objects
+            description of movies.
+        page: int
+            the current page number.
+        pages: int
+            the total number of pages.
+        next_page: int or False
+            the next page number or False if there is no next page.
+        next_page_url: str or False
+            the url for the next page or False if there is no next page.
+        total_movies: int
+            the total number of movies.
+    Response code: int
+        200.
+
+    Raises
+    -------
+    500: server error
+        if fetching movies from db fails.
+
+#### POST ` /movies/$id`
+
+    Creates a new movie.
+    
+    Permissions
+    -------
+    create:movies
+
+    Returns
+    -------
+    JSON:
+        success: bool
+            will be True if the request was successfully handled.
+        movie: JSON
+            description of the created movie.
+    Response code: int
+        201.
+
+    Notes
+    -------
+    See errors section for more information about the errors that can be raised.
+
+#### PATCH ` /movies/$id`
+
+    Updates an existing movie.
+
+    Permissions
+    -------
+    patch:movie
+
+    Parameters
+    -------
+    id: int
+        id of the movie to update.
+
+    Returns
+    -------
+    JSON:
+        success: bool
+            will be True if the request was successfully handled.
+        movie: JSON
+            description of the updated movie.
+    Response code: int
+        200.
+
+    Notes
+    -------
+    See errors section for more information about the errors that can be raised.
+    
+#### DELETE ` /movies/$id`
+
+   Deletes an existing movie.
+
+    Permissions
+    -------
+    delete:movie
+
+    Parameters
+    -------
+    id: int
+        id of the movie to delete.
+
+    Returns
+    -------
+    JSON:
+        success: bool
+            will be True if the request was successfully handled.
+    Response code: int
+        200.
+    
+    Raises
+    -------
+    500: server error
+        if deleting actor from db fails.
