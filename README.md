@@ -78,7 +78,17 @@ This will install all of the required packages we selected within the `requireme
 
 First ensure you are working using your created virtual environment.
 
-Each time you open a new terminal session, load envirement variables by running:
+You will need to add envirement variables, either to the ` setup.sh ` or to ` .env ` file:
+
+```
+AUTH0_CLIENT_ID=""
+AUTH0_CLIENT_SECRET=""
+AUTH0_DOMAIN=""
+ALGORITHMS=['RS256']
+API_AUDIENCE=""
+```
+
+Each time you open a new terminal session, run:
 
 ```bash
 source ./setup.sh
