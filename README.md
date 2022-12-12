@@ -105,6 +105,8 @@ The `--reload` flag will detect file changes and restart the server automaticall
 
 ## ✅ Running the tests
 
+### Pytest
+
 To run tests:
 
 ```bash
@@ -116,6 +118,13 @@ To get the coverage report:
 ```bash
 coverage report -m
 ```
+
+### Postman
+
+First you need to start the server, import postman collectoion from postman folder and run tests.
+
+![image](https://user-images.githubusercontent.com/90851774/207124182-cc632b39-3848-41f5-92a9-56d6e19a451f.png)
+
 
 **Coverage report example**
 
