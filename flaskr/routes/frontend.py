@@ -6,7 +6,7 @@ import json
 from os import environ as env
 from urllib.parse import quote_plus, urlencode
 
-from flask import Blueprint, jsonify, abort, request
+from flask import Blueprint
 from flask import render_template, session, url_for, redirect
 
 from dotenv import find_dotenv, load_dotenv
