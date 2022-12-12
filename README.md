@@ -1,5 +1,5 @@
 # Casting Agency API
-## Built with
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaiedZ/FSND-Casting-Agency-API/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/SaiedZ/FSND-Casting-Agency-API/tree/master)
 </br>
 </br>
 
@@ -11,6 +11,6 @@
 </br>
 </br>
 
-## stack
-</br>
-</br>
+## 🔎 About the project
+
+The Casting Agency API  is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process.
