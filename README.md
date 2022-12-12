@@ -202,6 +202,54 @@ The API will return three error types when requests fail:
     500: server error
         if fetching actors from db fails.
 
+    Response example:
+    -------
+    
+    ```json
+      {
+      "actors": [
+          {
+              "age": 35,
+              "gender": "Female",
+              "id": 1,
+              "movies": [
+                  {
+                      "description": null,
+                      "genre": "Action",
+                      "id": 2,
+                      "release_date": "Tue, 01 Jan 2002 00:00:00 GMT",
+                      "title": "Die Hard 2"
+                  }
+              ],
+              "name": "Jannet",
+              "number_movies": 1
+          },
+          {
+              "age": 3,
+              "gender": "Male",
+              "id": 2,
+              "movies": [],
+              "name": "Jammy",
+              "number_movies": 0
+          },
+          {
+              "age": 3,
+              "gender": "Male",
+              "id": 3,
+              "movies": [],
+              "name": "Jammy",
+              "number_movies": 0
+          }
+      ],
+      "next_page": 2,
+      "next_page_url": "http://127.0.0.1:5000/api/v1/actors?page=2",
+      "page": 1,
+      "pages": 5,
+      "success": true,
+      "total_actors": 15
+    }
+    
+    ```
   
 #### POST ` /actors`
 
@@ -225,6 +273,24 @@ The API will return three error types when requests fail:
     -------
     See errors section for more information about the errors that can be raised.
 
+
+    Response example:
+    -------
+    
+    ```json
+    {
+    "actor": {
+        "age": 3,
+        "gender": "Male",
+        "id": 18,
+        "movies": [],
+        "name": "Jammy",
+        "number_movies": 0
+    },
+    "success": true
+    }
+    ```
+    
 #### PATCH ` /actors/$id`
 
     Updates an existing actor.
@@ -252,6 +318,24 @@ The API will return three error types when requests fail:
     -------
     See errors section for more information about the errors that can be raised.
     
+    
+    Response example:
+    -------
+    
+    ```json
+    {
+        "actor": {
+            "age": 3,
+            "gender": "Female",
+            "id": 18,
+            "movies": [],
+            "name": "Jannet",
+            "number_movies": 0
+        },
+        "success": true
+    }
+    ```
+  
 #### DELETE ` /actors/$id`
 
    Deletes an existing actor.
@@ -280,7 +364,16 @@ The API will return three error types when requests fail:
     500: server error
         if deleting actor from db fails.
         
-
+    Response example:
+    -------
+    
+    ```json
+    {
+        "delete": 18,
+        "success": true
+    }
+    ```
+    
 ### 🎬 Movies endpoints
 
 #### GET ` /movies `
@@ -316,6 +409,47 @@ The API will return three error types when requests fail:
     500: server error
         if fetching movies from db fails.
 
+    Response example:
+    -------
+    
+    ```json
+{
+    "movies": [
+        {
+            "actors": [],
+            "description": null,
+            "genre": "Action",
+            "id": 1,
+            "num_actors": 0,
+            "release_date": "Fri, 01 Jan 1999 00:00:00 GMT",
+            "title": "Die Hard 1"
+        },
+        {
+            "actors": [
+                {
+                    "age": 35,
+                    "gender": "Female",
+                    "id": 1,
+                    "name": "Jannet"
+                }
+            ],
+            "description": null,
+            "genre": "Action",
+            "id": 2,
+            "num_actors": 1,
+            "release_date": "Tue, 01 Jan 2002 00:00:00 GMT",
+            "title": "Die Hard 2"
+        }
+        ],
+        "next_page": false,
+        "next_page_url": false,
+        "page": 1,
+        "pages": 1,
+        "success": true,
+        "total_movies": 2
+    }
+    ```
+    
 #### POST ` /movies`
 
     Creates a new movie.
@@ -337,6 +471,31 @@ The API will return three error types when requests fail:
     Notes
     -------
     See errors section for more information about the errors that can be raised.
+    
+    Response example:
+    -------
+    
+    ```json
+    {
+        "movie": {
+            "actors": [
+                {
+                    "age": 35,
+                    "gender": "Female",
+                    "id": 1,
+                    "name": "Jannet"
+                }
+            ],
+            "description": null,
+            "genre": "Action",
+            "id": 3,
+            "num_actors": 1,
+            "release_date": "Sat, 01 Jan 2005 00:00:00 GMT",
+            "title": "Die Hard 3"
+        },
+        "success": true
+    }
+    ```
 
 #### PATCH ` /movies/$id`
 
@@ -364,7 +523,32 @@ The API will return three error types when requests fail:
     Notes
     -------
     See errors section for more information about the errors that can be raised.
+
+    Response example:
+    -------
     
+    ```json
+    {
+        "movie": {
+            "actors": [
+                {
+                    "age": 35,
+                    "gender": "Female",
+                    "id": 1,
+                    "name": "Jannet"
+                }
+            ],
+            "description": null,
+            "genre": "Action",
+            "id": 3,
+            "num_actors": 1,
+            "release_date": "Sat, 01 Jan 2005 00:00:00 GMT",
+            "title": "Die Hard 3"
+        },
+        "success": true
+    }
+    ```
+
 #### DELETE ` /movies/$id`
 
    Deletes an existing movie.
@@ -392,3 +576,13 @@ The API will return three error types when requests fail:
     -------
     500: server error
         if deleting actor from db fails.
+        
+    Response example:
+    -------
+    
+    ```json
+    {
+        "delete": 3,
+        "success": true
+    }
+    ```
