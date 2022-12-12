@@ -18,6 +18,7 @@ pytest-flask = "*"
 pytest = "*"
 coverage = "*"
 gunicorn = "*"
+setuptools = "*"
 
 [dev-packages]
 flake8 = "*"
