@@ -203,7 +203,7 @@ The API will return three error types when requests fail:
         if fetching actors from db fails.
 
   
-#### POST ` /actors/$id`
+#### POST ` /actors`
 
     Creates a new actor.
 
@@ -383,6 +383,8 @@ The API will return three error types when requests fail:
     JSON:
         success: bool
             will be True if the request was successfully handled.
+        delete: int
+            id of the deleted movie.
     Response code: int
         200.
     
