@@ -27,6 +27,16 @@ def get_actors():
             will be True if the request was successfully handled.
         actors: list of json objects
             description of actors.
+        page: int
+            the current page number.
+        pages: int
+            the total number of pages.
+        next_page: int or False
+            the next page number or False if there is no next page.
+        next_page_url: str or False
+            the url for the next page or False if there is no next page.
+        total_actors: int
+            the total number of actors.
     Response code: int
         200.
 
