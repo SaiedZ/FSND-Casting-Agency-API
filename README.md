@@ -1,5 +1,5 @@
 # Casting Agency API
-## Built with
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaiedZ/FSND-Casting-Agency-API/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/SaiedZ/FSND-Casting-Agency-API/tree/master)
 </br>
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaiedZ/FSND-Casting-Agency-API/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/SaiedZ/FSND-Casting-Agency-API/tree/master)
