@@ -42,7 +42,13 @@ This is the capstone project of Udacity fullstack nanodegree program. It demonst
   - Deploying the API to Heroku
 
 
-## 🤓 Getting Started
+## ✨ Deployed API
+
+- **URL** : [https://agency-casting-api.herokuapp.com/](https://agency-casting-api.herokuapp.com/)
+- **API V1 URL**: [https://agency-casting-api.herokuapp.com/api/v1](https://agency-casting-api.herokuapp.com/api/v1)
+- **health check**: [https://agency-casting-api.herokuapp.com/api/v1/health](https://agency-casting-api.herokuapp.com/api/v1/health)
+
+## 🤓 Getting Started (local)
 
 ### Installing Dependencies
 
@@ -74,7 +80,7 @@ This will install all of the required packages we selected within the `requireme
 
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server.
 
-## 💻 Running the server
+## 💻 Running the server (local)
 
 First ensure you are working using your created virtual environment.
 
@@ -103,7 +109,7 @@ flask run --reload
 The `--reload` flag will detect file changes and restart the server automatically.
 
 
-## ✅ Running the tests
+## ✅ Running the tests (local)
 
 ### Pytest
 
