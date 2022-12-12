@@ -16,6 +16,10 @@ movies_blueprint = Blueprint('movies_blueprint', __name__)
 def get_movies():
     """Gets all movies
 
+    Permissions
+    -------
+    get:movies
+
     Returns
     -------
     JSON:
@@ -54,6 +58,10 @@ def get_movies():
 @requires_auth('create:movie')
 def create_movie():
     """Creates a new movie.
+
+    Permissions
+    -------
+    create:movies
 
     Returns
     -------
@@ -104,6 +112,10 @@ def create_movie():
 @requires_auth('patch:movie')
 def update_movie(id):
     """Updates a movie.
+
+    Permissions
+    -------
+    patch:movie
 
     Parameters
     -------
@@ -156,6 +168,10 @@ def update_movie(id):
 @requires_auth('delete:movie')
 def delete_movie(id):
     """Deletes a movie.
+
+    Permissions
+    -------
+    delete:movie
 
     Parameters
     -------

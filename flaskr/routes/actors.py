@@ -16,6 +16,10 @@ actors_blueprint = Blueprint('actors_blueprint', __name__)
 def get_actors():
     """Gets all actors
 
+    Permissions
+    -------
+    get:actors
+
     Returns
     -------
     JSON:
@@ -54,6 +58,10 @@ def get_actors():
 @requires_auth('create:actor')
 def create_actor():
     """Creates a new actor.
+
+    Permissions
+    -------
+    create:actor
 
     Returns
     -------
@@ -97,6 +105,10 @@ def create_actor():
 @requires_auth('patch:actor')
 def update_actor(id):
     """Updates an existing actor.
+
+    Permissions
+    -------
+    patch:actor
 
     Parameters
     -------
@@ -143,6 +155,10 @@ def update_actor(id):
 @requires_auth('delete:actor')
 def delete_actor(id):
     """Deletes an existing actor.
+
+    Permissions
+    -------
+    delete:actor
 
     Parameters
     -------
