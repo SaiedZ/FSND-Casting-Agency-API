@@ -140,6 +140,7 @@ coverage report -m
 
 ### Postman request examples
 
+A postman collection with request examples could be found in the postman folder: "FSND-Casting-Agency.postman_collection.json"
 
 
 ### Error Handling
