@@ -1,4 +1,5 @@
 # Casting Agency API
+## Built with
 </br>
 </br>
 
@@ -7,3 +8,9 @@
        alt="Casting agency API illustration"
        width="600"/>
 </p>
+</br>
+</br>
+
+## stack
+</br>
+</br>
