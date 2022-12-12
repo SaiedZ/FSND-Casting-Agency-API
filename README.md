@@ -138,10 +138,22 @@ coverage report -m
   - "Content-Type": "application/json"
   - "Accept": "application/json"
 
+
+### Auth0 roles
+
+- Casting Assistant
+    - Can view actors and movies
+- Casting Director
+    - All permissions a Casting Assistant has and…
+    - Add or delete an actor from the database
+    - Modify actors or movies
+- Executive Producer
+    - All permissions a Casting Director has and…
+    - Add or delete a movie from the database
+
 ### Postman request examples
 
 A postman collection with request examples could be found in the postman folder: "FSND-Casting-Agency.postman_collection.json"
-
 
 ### Error Handling
 
@@ -277,19 +289,19 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
-    {
-    "actor": {
-        "age": 3,
-        "gender": "Male",
-        "id": 18,
-        "movies": [],
-        "name": "Jammy",
-        "number_movies": 0
-    },
-    "success": true
-    }
-    ```
+```json
+{
+"actor": {
+    "age": 3,
+    "gender": "Male",
+    "id": 18,
+    "movies": [],
+    "name": "Jammy",
+    "number_movies": 0
+},
+"success": true
+}
+```
     
 #### PATCH ` /actors/$id`
 
@@ -322,19 +334,19 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
-    {
-        "actor": {
-            "age": 3,
-            "gender": "Female",
-            "id": 18,
-            "movies": [],
-            "name": "Jannet",
-            "number_movies": 0
-        },
-        "success": true
-    }
-    ```
+```json
+{
+    "actor": {
+        "age": 3,
+        "gender": "Female",
+        "id": 18,
+        "movies": [],
+        "name": "Jannet",
+        "number_movies": 0
+    },
+    "success": true
+}
+```
   
 #### DELETE ` /actors/$id`
 
@@ -367,12 +379,12 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
-    {
-        "delete": 18,
-        "success": true
-    }
-    ```
+```json
+{
+    "delete": 18,
+    "success": true
+}
+```
     
 ### 🎬 Movies endpoints
 
@@ -412,43 +424,43 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
+```json
 {
-    "movies": [
-        {
-            "actors": [],
-            "description": null,
-            "genre": "Action",
-            "id": 1,
-            "num_actors": 0,
-            "release_date": "Fri, 01 Jan 1999 00:00:00 GMT",
-            "title": "Die Hard 1"
-        },
-        {
-            "actors": [
-                {
-                    "age": 35,
-                    "gender": "Female",
-                    "id": 1,
-                    "name": "Jannet"
-                }
-            ],
-            "description": null,
-            "genre": "Action",
-            "id": 2,
-            "num_actors": 1,
-            "release_date": "Tue, 01 Jan 2002 00:00:00 GMT",
-            "title": "Die Hard 2"
-        }
+"movies": [
+    {
+        "actors": [],
+        "description": null,
+        "genre": "Action",
+        "id": 1,
+        "num_actors": 0,
+        "release_date": "Fri, 01 Jan 1999 00:00:00 GMT",
+        "title": "Die Hard 1"
+    },
+    {
+        "actors": [
+            {
+                "age": 35,
+                "gender": "Female",
+                "id": 1,
+                "name": "Jannet"
+            }
         ],
-        "next_page": false,
-        "next_page_url": false,
-        "page": 1,
-        "pages": 1,
-        "success": true,
-        "total_movies": 2
+        "description": null,
+        "genre": "Action",
+        "id": 2,
+        "num_actors": 1,
+        "release_date": "Tue, 01 Jan 2002 00:00:00 GMT",
+        "title": "Die Hard 2"
     }
-    ```
+    ],
+    "next_page": false,
+    "next_page_url": false,
+    "page": 1,
+    "pages": 1,
+    "success": true,
+    "total_movies": 2
+}
+```
     
 #### POST ` /movies`
 
@@ -475,27 +487,27 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
-    {
-        "movie": {
-            "actors": [
-                {
-                    "age": 35,
-                    "gender": "Female",
-                    "id": 1,
-                    "name": "Jannet"
-                }
-            ],
-            "description": null,
-            "genre": "Action",
-            "id": 3,
-            "num_actors": 1,
-            "release_date": "Sat, 01 Jan 2005 00:00:00 GMT",
-            "title": "Die Hard 3"
-        },
-        "success": true
-    }
-    ```
+```json
+{
+    "movie": {
+        "actors": [
+            {
+                "age": 35,
+                "gender": "Female",
+                "id": 1,
+                "name": "Jannet"
+            }
+        ],
+        "description": null,
+        "genre": "Action",
+        "id": 3,
+        "num_actors": 1,
+        "release_date": "Sat, 01 Jan 2005 00:00:00 GMT",
+        "title": "Die Hard 3"
+    },
+    "success": true
+}
+```
 
 #### PATCH ` /movies/$id`
 
@@ -527,27 +539,27 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
-    {
-        "movie": {
-            "actors": [
-                {
-                    "age": 35,
-                    "gender": "Female",
-                    "id": 1,
-                    "name": "Jannet"
-                }
-            ],
-            "description": null,
-            "genre": "Action",
-            "id": 3,
-            "num_actors": 1,
-            "release_date": "Sat, 01 Jan 2005 00:00:00 GMT",
-            "title": "Die Hard 3"
-        },
-        "success": true
-    }
-    ```
+```json
+{
+    "movie": {
+        "actors": [
+            {
+                "age": 35,
+                "gender": "Female",
+                "id": 1,
+                "name": "Jannet"
+            }
+        ],
+        "description": null,
+        "genre": "Action",
+        "id": 3,
+        "num_actors": 1,
+        "release_date": "Sat, 01 Jan 2005 00:00:00 GMT",
+        "title": "Die Hard 3"
+    },
+    "success": true
+}
+```
 
 #### DELETE ` /movies/$id`
 
@@ -580,9 +592,9 @@ The API will return three error types when requests fail:
     Response example:
     -------
     
-    ```json
-    {
-        "delete": 3,
-        "success": true
-    }
-    ```
+```json
+{
+    "delete": 3,
+    "success": true
+}
+```
