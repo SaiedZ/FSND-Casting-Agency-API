@@ -5,7 +5,7 @@ Test suite for the actors.
 import json
 import flaskr as flaskr
 
-from data.models import Actor
+from flaskr.data.models import Actor
 
 
 class TestActors:
@@ -65,16 +65,16 @@ class TestActors:
 
     def test_get_actor_without_permission_fails_403(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": []})
         response = client.get(self.actor_url)
         assert response.status_code == 403
 
     def test_post_actor_without_permission_fails_403(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": []})
         response = client.post(self.actor_url)
         assert response.status_code == 403
@@ -83,8 +83,8 @@ class TestActors:
         self, client, mocker
     ):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": []})
         response = client.delete(self.actor_detail_url)
         assert response.status_code == 403
@@ -93,17 +93,17 @@ class TestActors:
         self, client, mocker
     ):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
-        mocker.patch("auth.auth.verify_decode_jwt",
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.verify_decode_jwt",
                      return_value={"permissions": []})
         response = client.patch(self.actor_detail_url)
         assert response.status_code == 403
 
     def test_get_actor_with_permission_return_success(self, client, mocker):
 
-        mocker.patch("auth.auth.get_token_auth_header", return_value="")
+        mocker.patch("flaskr.auth.auth.get_token_auth_header", return_value="")
         mocker.patch(
-            "auth.auth.verify_decode_jwt",
+            "flaskr.auth.auth.verify_decode_jwt",
             return_value={"permissions": ["get:actors"]}
         )
         response = client.get(self.actor_url)
