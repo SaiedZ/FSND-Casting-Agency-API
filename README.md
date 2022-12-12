@@ -3,6 +3,8 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaiedZ/FSND-Casting-Agency-API/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/SaiedZ/FSND-Casting-Agency-API/tree/master)
 </br>
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)    ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)    ![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)    ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 </br>
 
 <p align="center">
