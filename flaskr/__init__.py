@@ -48,9 +48,15 @@ def create_app(test_config=False):
     CORS(app)
 
     # Register blueprints
-    app.register_blueprint(error_handlers_blueprint, url_prefix=f"/api/{API_VERSION}")
-    app.register_blueprint(actors_blueprint, url_prefix=f"/api/{API_VERSION}")
-    app.register_blueprint(movies_blueprint, url_prefix=f"/api/{API_VERSION}")
+    app.register_blueprint(
+        error_handlers_blueprint, url_prefix=f"/api/{API_VERSION}")
+
+    app.register_blueprint(
+        actors_blueprint, url_prefix=f"/api/{API_VERSION}")
+
+    app.register_blueprint(
+        movies_blueprint, url_prefix=f"/api/{API_VERSION}")
+
     app.register_blueprint(oauth_blueprint)
 
     # Setting up the database
