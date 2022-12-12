@@ -1,11 +1,8 @@
 # Casting Agency API
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaiedZ/FSND-Casting-Agency-API/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/SaiedZ/FSND-Casting-Agency-API/tree/master)
 </br>
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaiedZ/FSND-Casting-Agency-API/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/SaiedZ/FSND-Casting-Agency-API/tree/master)
-<br>
-<span><img src="https://img.shields.io/badge/Flask-2.2.2-brightgreen?style=for-the-badge&logo=flask&logoColor=white">   <img src="https://img.shields.io/badge/Python-3.10.0-brightgreen?style=for-the-badge&logo=python&logoColor=white">   <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white">   <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white">    </span>
-<br>
+</br>
 </br>
 
 <p align="center">
