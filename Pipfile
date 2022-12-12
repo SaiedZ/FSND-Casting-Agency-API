@@ -17,6 +17,7 @@ requests = "*"
 pytest-flask = "*"
 pytest = "*"
 coverage = "*"
+gunicorn = "*"
 
 [dev-packages]
 flake8 = "*"

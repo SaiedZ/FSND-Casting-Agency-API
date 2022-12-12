@@ -1,0 +1,10 @@
+.github
+__pycache__/
+.pytest_cache/
+.vscode/
+
+.coverage
+.coveragerc
+.mypy_cache/
+urls_users.txt
+Procfile
