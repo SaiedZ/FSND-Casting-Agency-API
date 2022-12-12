@@ -119,18 +119,20 @@ To get the coverage report:
 coverage report -m
 ```
 
-### Postman
-
-First you need to start the server, import postman collectoion from postman folder and run tests.
-
-![image](https://user-images.githubusercontent.com/90851774/207124182-cc632b39-3848-41f5-92a9-56d6e19a451f.png)
-
 
 **Coverage report example**
 
 <img src="https://user-images.githubusercontent.com/90851774/207088816-4e13cf11-7769-4024-9633-34ef1f94a0e1.png"
      alt="Coverage report"
      width="400"/>
+     
+
+### Postman
+
+First you need to start the server, import postman collectoion from postman folder and run tests.
+
+![image](https://user-images.githubusercontent.com/90851774/207124182-cc632b39-3848-41f5-92a9-56d6e19a451f.png)
+
 
 ## 📖 API Reference
 
