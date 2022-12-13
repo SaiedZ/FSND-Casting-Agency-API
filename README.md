@@ -113,6 +113,29 @@ flask run --reload
 
 The `--reload` flag will detect file changes and restart the server automatically.
 
+### Using Docker
+
+Make sure your have docker installed and running on your local machine.
+
+- Create the docker image by runing:
+
+```bash
+docker build -t name-of-your-image .
+```
+
+- Run the container:
+
+```bash
+docker run --name name-of-your-container --rm -d -p 5000:5000 name-of-your-image
+```
+
+- Then you can test your api at the following url: localhost:5000/api/v1/health
+
+- Finally, you can stop the running container:
+
+```bash
+docker stop name-of-your-container
+```
 
 ## ✅ Running the tests (local)
 
@@ -143,7 +166,6 @@ coverage report -m
 First you need to start the server, import postman collectoion from postman folder and run tests.
 
 ![image](https://user-images.githubusercontent.com/90851774/207124182-cc632b39-3848-41f5-92a9-56d6e19a451f.png)
-
 
 ## 📖 API Reference
 
