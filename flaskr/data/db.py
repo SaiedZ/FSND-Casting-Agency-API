@@ -12,8 +12,10 @@ db = SQLAlchemy()
 def db_setup(app):
     """setup the database for the app.
 
-    returns:
-        the database object
+    Returns:
+    --------
+    db:
+        the database instance
     """
 
     db.init_app(app)
