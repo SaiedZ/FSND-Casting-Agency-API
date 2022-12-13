@@ -32,6 +32,9 @@ class Paginator(object):
         formatted_items: list
             items for the next page
         """
+        if not self.items:
+            return []
+
         start = (self.page - 1) * ITEM_PER_PAGE
         end = start + ITEM_PER_PAGE
 
