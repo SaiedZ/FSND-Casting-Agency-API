@@ -155,11 +155,10 @@ coverage report -m
 
 
 **Coverage report example**
-
-<img src="https://user-images.githubusercontent.com/90851774/207088816-4e13cf11-7769-4024-9633-34ef1f94a0e1.png"
+     
+<img src="https://user-images.githubusercontent.com/90851774/207300524-e9b5976e-17be-4912-b4d7-4995fa63de9f.png"
      alt="Coverage report"
      width="400"/>
-     
 
 ### Postman
 
