@@ -153,7 +153,6 @@ def update_actor(id):
         actor.age = data.get('age') or actor.age
         actor.gender = data.get('gender') or actor.gender
         actor.update()
-        print("actor updated")
         return actor
 
     actor = update_actor_helper()
