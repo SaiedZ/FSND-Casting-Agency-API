@@ -4,7 +4,7 @@ Paginator module
 
 from math import ceil
 
-ITEM_PER_PAGE = 3
+from flaskr.constants import ITEM_PER_PAGE
 
 
 class Paginator(object):

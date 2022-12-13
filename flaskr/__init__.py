@@ -18,9 +18,7 @@ from .utils import error_handlers_blueprint
 from .routes import actors_blueprint, movies_blueprint
 from .routes import oauth_blueprint, oauth
 from .routes import health_blueprint
-
-
-API_VERSION = "v1"
+from .constants import API_VERSION
 
 
 def create_app(test_config=False):
