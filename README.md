@@ -18,6 +18,9 @@
 ## 🔎 About the project
 
 The Casting Agency API  is responsible for creating movies and managing and assigning actors to those movies.
+
+## 💪 Motivation for project
+
 This is the capstone project of Udacity fullstack nanodegree program. It demonstrates our skills to develop and deploy a RESTful API.
 
 ## 👉 What I have built ?
