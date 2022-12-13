@@ -86,6 +86,8 @@ First ensure you are working using your created virtual environment.
 
 You will need to add envirement variables, either to the ` setup.sh ` or to ` .env ` file:
 
+> If added to setup.sh, please add ` export ` at the begining of each line.
+
 ```
 AUTH0_CLIENT_ID=""
 AUTH0_CLIENT_SECRET=""
