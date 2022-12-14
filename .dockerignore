@@ -2,6 +2,10 @@
 __pycache__/
 .pytest_cache/
 .vscode/
+.circleci
+.gitignore
+
+Dockerfile
 
 .coverage
 .coveragerc
